@@ -27518,10 +27518,10 @@ def main_sign_in():
                                 # add product to product table
                                 nm_prd=prd_nm.get()
                                 sku_prd=prd_sku.get()
-                                price_prd=wg_r9c3.get()
+                                price_prd=wg_r9c3.get().split('$')
                             
                                 add_prd="INSERT INTO producttable(pname,sku,price,cid_id)VALUES(%s,%s,%s,%s)" #adding values into db
-                                add_prd_val=(nm_prd,sku_prd,price_prd,dtl_cmp_pro[0])
+                                add_prd_val=(nm_prd,sku_prd,price_prd[1],dtl_cmp_pro[0])
                                 fbcursor.execute(add_prd,add_prd_val)
                                 finsysdb.commit()
 
@@ -30071,9 +30071,9 @@ def main_sign_in():
                                     # add product to product table
                                     nm_prd=prd_nm.get()
                                     sku_prd=prd_sku.get()
-                                    price_prd=wg_r9c3.get()
+                                    price_prd=wg_r9c3.get().split('$')
                                     add_prd="update producttable set pname=%s,sku=%s,price=%s,cid_id=%s where Pid=%s" #adding values into db
-                                    add_prd_val=(nm_prd,sku_prd,price_prd,dtl_cmp_pro[0],prd_id)
+                                    add_prd_val=(nm_prd,sku_prd,price_prd[1],dtl_cmp_pro[0],prd_id)
                                     fbcursor.execute(add_prd,add_prd_val)
                                     finsysdb.commit()
 
@@ -47835,7 +47835,7 @@ def main_sign_in():
                             sku_prd=pr_sku.get()
                             price_prd=pr_prs.get()
                             add_prd="INSERT INTO producttable(pname,sku,price,cid_id)VALUES(%s,%s,%s,%s)" #adding values into db
-                            add_prd_val=(nm_prd,sku_prd,"$"+str(price_prd),dtl_cmp_pro[0])
+                            add_prd_val=(nm_prd,sku_prd,price_prd,dtl_cmp_pro[0])
                             fbcursor.execute(add_prd,add_prd_val)
                             finsysdb.commit()
 
